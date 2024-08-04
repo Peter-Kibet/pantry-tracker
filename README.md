@@ -1,6 +1,4 @@
-Sure! Here's the `README.md` content formatted for easy pasting:
 
-````md
 # Pantry Tracker
 
 A Pantry Tracker app built with Next.js, Vite, Material UI, and Firebase. The app helps you manage your pantry by allowing you to add, update, and delete pantry items. Additionally, it features search and filter functionality, image classification using AI, and recipe suggestions based on your pantry contents.
@@ -32,7 +30,7 @@ Ensure you have the following installed:
    git clone https://github.com/your-username/pantry-tracker.git
    cd pantry-tracker
    ```
-````
+
 
 2. **Install Dependencies**:
 
@@ -102,11 +100,14 @@ Ensure you have the following installed:
 
 Distributed under the MIT License. See `LICENSE` for more information.
 
+## Collaborators
+
+- *Peter Kibet*: [GitHub](https://github.com/Peter-Kibet)
+- *Peter Kibet*: [GitHub](https://github.com/best-ed)
+
 ## Contact
 
 - **Your Name** - [@your-twitter-handle](https://twitter.com/your-twitter-handle)
 - **Project Link**: [https://github.com/your-username/pantry-tracker](https://github.com/your-username/pantry-tracker)
 
-```
 
-```
