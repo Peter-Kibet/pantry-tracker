@@ -17,7 +17,7 @@
     "@mui/x-data-grid": "^7.11.1",
     "@next/third-parties": "^14.2.5",
     "dotenv": "^16.4.5",
-    "firebase": "^10.12.4",
+    "firebase": "^10.12.5",
     "next": "^14.2.5",
     "openai": "^4.53.2",
     "react": "^18",

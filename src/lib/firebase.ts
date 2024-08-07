@@ -1,17 +1,24 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const firebaseConfig = {
-	apiKey: "AIzaSyDboUF0zZtxJMCroobtJKQzMVlXRtygEPg",
-	authDomain: "pantry-tracker-23e0a.firebaseapp.com",
-	projectId: "pantry-tracker-23e0a",
-	storageBucket: "pantry-tracker-23e0a.appspot.com",
-	messagingSenderId: "628881064703",
-	appId: "1:628881064703:web:a2973538483c7f1c0282ca",
+  apiKey: "your-api-key",
+  authDomain: "your-auth-domain",
+  projectId: "pantry-tracker-28e02",
+  storageBucket: "pantry-tracker-28e02.appspot.com",
+  messagingSenderId: "874415559814",
+  appId: "1:874415559814:web:0628314b27e7ad5ec27",
 };
 
-const app = initializeApp(firebaseConfig);
+// Check if Firebase app is already initialized
+let app;
+if (!getApps().length) {
+  app = initializeApp(firebaseConfig);
+} else {
+  app = getApps()[0]; // Use the existing app
+}
+
 const db = getFirestore(app);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
