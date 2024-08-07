@@ -7,7 +7,6 @@ import {
   DialogContent,
   DialogTitle,
   CircularProgress,
-  TextField,
 } from "@mui/material";
 import { Cancel } from "@mui/icons-material";
 import { useAlert } from "@/context";
@@ -28,10 +27,8 @@ const CameraComponent = ({ refreshItems }) => {
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const [cameraSupported, setCameraSupported] = useState(null);
   const { user } = useAuth();
   const alert = useAlert();
-  const [apiKey, setApiKey] = useState("");
 
   useEffect(() => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -106,7 +103,7 @@ const CameraComponent = ({ refreshItems }) => {
         }),
         headers: {
           "Content-Type": "application/json",
-          Authorization: apiKey,
+          // Authorization header if needed, otherwise remove it
         },
       });
 
@@ -140,7 +137,6 @@ const CameraComponent = ({ refreshItems }) => {
       setOpenModal(false);
       setLoading(false);
       setImage(null);
-      setApiKey("");
     }
   };
 
@@ -186,22 +182,11 @@ const CameraComponent = ({ refreshItems }) => {
             Capture
           </Button>
           {image && (
-            <>
-              <img
-                src={image}
-                alt="Captured"
-                style={{ width: "100%", marginTop: "10px" }}
-              />
-              <TextField
-                required
-                label="Enter Your OpenAI API Key"
-                variant="outlined"
-                className="mt-10"
-                onChange={(e) => {
-                  setApiKey(e.target.value);
-                }}
-              />
-            </>
+            <img
+              src={image}
+              alt="Captured"
+              style={{ width: "100%", marginTop: "10px" }}
+            />
           )}
         </DialogContent>
         <DialogActions>
@@ -212,17 +197,15 @@ const CameraComponent = ({ refreshItems }) => {
           >
             Cancel
           </Button>
-          {image && apiKey && (
-            <Button
-              type="submit"
-              onClick={handleAdd}
-              variant="contained"
-              color="primary"
-              disabled={loading}
-            >
-              {loading ? <CircularProgress size={24} /> : "Add"}
-            </Button>
-          )}
+          <Button
+            onClick={handleAdd}
+            variant="contained"
+            color="primary"
+            disabled={!image || loading}
+            sx={{ backgroundColor: image ? "primary.main" : "grey.500" }}
+          >
+            {loading ? <CircularProgress size={24} /> : "Add"}
+          </Button>
         </DialogActions>
       </Dialog>
     </Box>
