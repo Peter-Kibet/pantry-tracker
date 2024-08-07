@@ -28,12 +28,22 @@ const CameraComponent = ({ refreshItems }) => {
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [cameraSupported, setCameraSupported] = useState(null);
   const { user } = useAuth();
   const alert = useAlert();
   const [apiKey, setApiKey] = useState("");
 
   useEffect(() => {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      setCameraSupported(true);
+    } else {
+      setCameraSupported(false);
+      alert.error("Camera is not supported on this device or browser");
+    }
+  }, [alert]);
+
+  const startCamera = () => {
+    if (cameraSupported) {
       navigator.mediaDevices
         .getUserMedia({ video: { facingMode: "environment" } })
         .then((stream) => {
@@ -41,12 +51,18 @@ const CameraComponent = ({ refreshItems }) => {
         })
         .catch((err) => {
           console.error("Error accessing the camera: ", err);
+          setCameraSupported(false);
           alert.error("Camera is not supported on this device or browser");
         });
-    } else {
-      alert.error("Camera is not supported on this device or browser");
     }
-  }, [alert]);
+    setOpenModal(true);
+  };
+
+  const stopCamera = () => {
+    if (videoRef.current && videoRef.current.srcObject) {
+      videoRef.current.srcObject.getTracks().forEach((track) => track.stop());
+    }
+  };
 
   const takePhoto = () => {
     const context = canvasRef.current.getContext("2d");
@@ -59,11 +75,13 @@ const CameraComponent = ({ refreshItems }) => {
     );
     const photo = canvasRef.current.toDataURL("image/png");
     setImage(photo);
+    stopCamera(); // Stop the camera after capturing the image
   };
 
   const handleCancel = () => {
     setOpenModal(false);
     setImage(null);
+    stopCamera(); // Ensure the camera stops if the dialog is closed without capturing
   };
 
   const handleAdd = async () => {
@@ -75,23 +93,14 @@ const CameraComponent = ({ refreshItems }) => {
           messages: [
             {
               role: "system",
-              content: [
-                {
-                  type: "text",
-                  text: "You are a pantry item predictor that can predict an item I am holding in my hand in the image. Return only the name of the item that I am holding in the image. If it is not a pantry item, then reply 'false' as an answer.",
-                },
-              ],
+              content:
+                "You are a pantry item predictor that can predict an item I am holding in my hand in the image. Return only the name of the item that I am holding in the image. If it is not a pantry item, then reply 'false' as an answer.",
             },
             {
               role: "user",
-              content: [
-                {
-                  type: "image_url",
-                  image_url: {
-                    url: image,
-                  },
-                },
-              ],
+              content: {
+                image_url: image,
+              },
             },
           ],
         }),
@@ -135,14 +144,10 @@ const CameraComponent = ({ refreshItems }) => {
     }
   };
 
-  const handleOpenModal = () => {
-    setOpenModal(true);
-  };
-
   return (
     <Box className="flex flex-col items-center">
       <Button
-        onClick={handleOpenModal}
+        onClick={startCamera}
         variant="contained"
         color="primary"
         className="mt-4"
@@ -207,13 +212,13 @@ const CameraComponent = ({ refreshItems }) => {
           >
             Cancel
           </Button>
-          {image && (
+          {image && apiKey && (
             <Button
               type="submit"
               onClick={handleAdd}
               variant="contained"
               color="primary"
-              disabled={loading || !apiKey}
+              disabled={loading}
             >
               {loading ? <CircularProgress size={24} /> : "Add"}
             </Button>
