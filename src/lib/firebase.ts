@@ -3,8 +3,8 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "your-api-key",
-  authDomain: "your-auth-domain",
+  apiKey: "AIzaSyDn4Lvb7zH4yZBEYuGILB-DX62aU9f1vl0",
+  authDomain: "pantry-tracker-28e02.firebaseapp.com",
   projectId: "pantry-tracker-28e02",
   storageBucket: "pantry-tracker-28e02.appspot.com",
   messagingSenderId: "874415559814",
