@@ -27,6 +27,7 @@ const CameraComponent = ({ refreshItems }) => {
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  const [cameraSupported, setCameraSupported] = useState(true); // Added this line
   const { user } = useAuth();
   const alert = useAlert();
 
