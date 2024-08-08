@@ -1,6 +1,7 @@
 import { signInWithGoogle } from "@/lib/auth";
 import { Container, Typography, Button, Box } from "@mui/material";
 import Image from "next/image"; // Ensure you have next/image configured for optimized images
+import styles from "./LandingPage.module.css"; // Import the CSS module
 
 const LandingPage: React.FC = () => {
   const handleGetStarted = () => {
@@ -8,62 +9,32 @@ const LandingPage: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="lg" className="py-20">
-      <Box
-        className="text-center"
-        sx={{
-          backgroundImage: 'url("/images/bg.jpg")', // Add a background image
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          color: "#fff", // Make text white for better contrast
-          py: 10, // Add vertical padding
-          borderRadius: 3, // Add rounded corners for a modern look
-        }}
-      >
-        <Typography
-          variant="h2"
-          component="h1"
-          sx={{
-            fontWeight: "bold",
-            mb: 4,
-            fontSize: { xs: "2.5rem", md: "3.5rem" }, // Responsive font size
-            textShadow: "2px 2px 10px rgba(0,0,0,0.5)", // Add subtle text shadow
-          }}
-        >
-          Pantry & Fridge Tracker App
-        </Typography>
-        <Typography
-          variant="h5"
-          component="p"
-          sx={{
-            mb: 6,
-            fontSize: { xs: "1.2rem", md: "1.5rem" },
-            textShadow: "1px 1px 5px rgba(0,0,0,0.5)",
-          }}
-        >
-          Easily manage your pantry items and keep track of what you have.
-        </Typography>
-        <Button
-          variant="contained"
-          color="secondary"
-          size="large"
-          sx={{
-            px: 5, // Add horizontal padding
-            py: 1.5, // Add vertical padding
-            fontSize: "1.2rem", // Increase button text size
-            textTransform: "none", // Remove uppercase transformation
-            borderRadius: "25px", // Rounded button
-            boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.2)", // Add button shadow
-          }}
-          onClick={handleGetStarted}
-        >
-          Get Started
-        </Button>
+    <Container maxWidth="lg" className={`${styles.container}`}>
+      <Box className={styles.heroSection}>
+        <Box className={styles.heroOverlay}>
+          <Typography variant="h2" component="h1" className={styles.heroTitle}>
+            Pantry & Fridge Tracker App
+          </Typography>
+          <Typography
+            variant="h5"
+            component="p"
+            className={styles.heroSubtitle}
+          >
+            Easily manage your pantry items and keep track of what you have.
+          </Typography>
+          <Button
+            variant="contained"
+            size="large"
+            className={styles.getStartedButton}
+            onClick={handleGetStarted}
+          >
+            Start Tracking
+          </Button>
+        </Box>
       </Box>
 
       <Box
-        className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8"
-        sx={{ mt: 10 }}
+        className={`${styles.featuresSection} mt-20 grid grid-cols-1 md:grid-cols-3 gap-8`}
       >
         <Box className="text-center">
           <Image
@@ -72,15 +43,14 @@ const LandingPage: React.FC = () => {
             width={150}
             height={150}
           />
-          <Typography
-            variant="h6"
-            component="h3"
-            className="font-bold mt-4"
-            sx={{ mt: 4 }}
-          >
+          <Typography variant="h6" component="h3" className="font-bold mt-4">
             Easy to Use
           </Typography>
-          <Typography variant="body1" component="p" sx={{ mt: 2 }}>
+          <Typography
+            variant="body1"
+            component="p"
+            className={styles.featureDescription}
+          >
             Our user-friendly interface makes managing your pantry a breeze.
           </Typography>
         </Box>
@@ -91,15 +61,14 @@ const LandingPage: React.FC = () => {
             width={150}
             height={150}
           />
-          <Typography
-            variant="h6"
-            component="h3"
-            className="font-bold mt-4"
-            sx={{ mt: 4 }}
-          >
+          <Typography variant="h6" component="h3" className="font-bold mt-4">
             Track Items
           </Typography>
-          <Typography variant="body1" component="p" sx={{ mt: 2 }}>
+          <Typography
+            variant="body1"
+            component="p"
+            className={styles.featureDescription}
+          >
             Keep an inventory of all your pantry items with ease.
           </Typography>
         </Box>
@@ -110,17 +79,70 @@ const LandingPage: React.FC = () => {
             width={150}
             height={150}
           />
-          <Typography
-            variant="h6"
-            component="h3"
-            className="font-bold mt-4"
-            sx={{ mt: 4 }}
-          >
+          <Typography variant="h6" component="h3" className="font-bold mt-4">
             Get Great Recipes
           </Typography>
-          <Typography variant="body1" component="p" sx={{ mt: 2 }}>
+          <Typography
+            variant="body1"
+            component="p"
+            className={styles.featureDescription}
+          >
             Get new great recipes generated by AI, considering your items in the
             pantry.
+          </Typography>
+        </Box>
+        <Box className="text-center">
+          <Image
+            src="/images/easy.jpg"
+            alt="Easy to Use"
+            width={150}
+            height={150}
+          />
+          <Typography variant="h6" component="h3" className="font-bold mt-4">
+            Easy to Use
+          </Typography>
+          <Typography
+            variant="body1"
+            component="p"
+            className={styles.featureDescription}
+          >
+            Our user-friendly interface makes managing your pantry a breeze.
+          </Typography>
+        </Box>
+        <Box className="text-center">
+          <Image
+            src="/images/easy.jpg"
+            alt="Easy to Use"
+            width={150}
+            height={150}
+          />
+          <Typography variant="h6" component="h3" className="font-bold mt-4">
+            Easy to Use
+          </Typography>
+          <Typography
+            variant="body1"
+            component="p"
+            className={styles.featureDescription}
+          >
+            Our user-friendly interface makes managing your pantry a breeze.
+          </Typography>
+        </Box>
+        <Box className="text-center">
+          <Image
+            src="/images/easy.jpg"
+            alt="Easy to Use"
+            width={150}
+            height={150}
+          />
+          <Typography variant="h6" component="h3" className="font-bold mt-4">
+            Easy to Use
+          </Typography>
+          <Typography
+            variant="body1"
+            component="p"
+            className={styles.featureDescription}
+          >
+            Our user-friendly interface makes managing your pantry a breeze.
           </Typography>
         </Box>
       </Box>
