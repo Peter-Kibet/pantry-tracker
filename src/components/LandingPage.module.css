@@ -10,13 +10,12 @@
   background-size: cover;
   background-position: center;
   color: #461104;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 1.5rem;
   position: relative;
 }
 
 .heroSection:hover {
-  /* border: 1px solid #da480e; */
   box-shadow: 0px 0px 35px rgba(255, 103, 2, 0.9);
 }
 
@@ -55,14 +54,73 @@
   border: 1px solid #da480e;
   color: #da480e;
   box-shadow: 0px 4px 15px rgba(255, 103, 2, 0.9);
-
   font-style: calc(1.2rem + 0.1vw);
   transition: all 0.3s ease;
 }
 
+.feature {
+  background-color: #da480e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 1.5rem;
+  text-align: center;
+  color: #fff;
+}
+
+.feature:hover {
+  background-color: #fff;
+  box-shadow: 0px 0px 15px rgba(255, 103, 2, 0.9);
+  color: #461104;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.featureImage {
+  width: 100%;
+  height: auto;
+  border-radius: 1.5rem;
+}
+
+.featureImage:hover {
+  box-shadow: 0px 0px 15px rgba(255, 103, 2, 0.9);
+}
+
+/* Responsive Features Section */
+.featuresSection {
+  margin-top: 2.5rem;
+  display: grid;
+  grid-template-columns: 1fr; /* 1 column by default */
+  gap: 1.5rem;
+}
+
+/* Hide descriptions by default */
+.featureDescription {
+  display: none;
+}
+
+/* Tablets (min-width: 768px) */
 @media (min-width: 768px) {
-  .heroTitle {
-    font-size: 3.5rem;
+  .featuresSection {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+  }
+
+  /* Hide descriptions by default */
+  .featureDescription {
+    display: block;
+  }
+}
+
+/* Desktops and larger devices (min-width: 1024px) */
+@media (min-width: 1024px) {
+  .featuresSection {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns on desktops */
+  }
+
+  /* Hide descriptions by default */
+  .featureDescription {
+    display: block;
   }
 }
 
@@ -86,12 +144,4 @@
   text-transform: none;
   border-radius: 25px;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.featuresSection {
-  margin-top: 2.5rem;
-}
-
-.featureDescription {
-  margin-top: 0.5rem;
 }
