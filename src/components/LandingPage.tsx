@@ -13,14 +13,15 @@ const LandingPage: React.FC = () => {
       <Box className={styles.heroSection}>
         <Box className={styles.heroOverlay}>
           <Typography variant="h2" component="h1" className={styles.heroTitle}>
-            Pantry & Fridge Tracker App
+            PANTRY & FRIDGE TRACKER
           </Typography>
           <Typography
             variant="h5"
             component="p"
             className={styles.heroSubtitle}
           >
-            Easily manage your pantry items and keep track of what you have.
+            Easily manage your pantry & fridge items with revolutionary AI
+            Technology.
           </Typography>
           <Button
             variant="contained"
